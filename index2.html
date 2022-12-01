@@ -1,44 +1,64 @@
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-    body {
-        font-family: "Segoe UI", sans-serif;
-        margin: 0px;
-    }
 
-    p {
-        font-size: 18px;
-        color: white;
-        font-weight: bold;
-    }
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0px;
+}
 
-    div {
-        background-color: #ca5010;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        
-    }
+ul {
+    list-style-type: none;
+}
 
-    .marquee:hover{
-        animation-play-state: paused;
-    }
+li {
+  font-weight: bold;
+  font-size: 18px;
+}
 
-    @keyframes marquee{
-        0%{transform: translateX(100%);}
-        100%{transform: translateX(-100%);}
-    }
+.marquee {
+  background-color: #ca5010;
+  color: white;
+  --gap: 1rem;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+}
 
-    @media (prefers-reduced-motion: no-preference) {
-        .marquee{
-            animation: marquee 15s linear infinite;
-        }
-    }
+.marquee__content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
+  gap: var(--gap);
+  animation: scroll 15s linear infinite;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
 </style>
 </head>
 <body>
-<div>
-    <p class="marquee">En noviembre, Prime generó 999 MW. | En el 2022, Prime ha generado 999 MW.</p>
+<div class="marquee">
+  <ul class="marquee__content">
+    <li>En noviembre, Prime generó ? MW</li>
+    <li>En el 2022, Prime ha generado ? MW</li>
+  </ul>
+  <!-- Mirrors the content above -->
+  <ul class="marquee__content" aria-hidden="true">
+    <li>En noviembre, Prime generó ? MW</li>
+    <li>En el 2022, Prime ha generado ? MW</li>
+  </ul>
 </div>
 </body>
 </html>
